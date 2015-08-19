@@ -22,7 +22,23 @@ A viewer must be available to allow the sharing of documents with others.
 ## Creator
 An authoring tool to create a sharable document to be viewed by the viewer.
 
+## Technology
+Some kind of vector graphics (SVG?) manipulated using JavaScript.
+I've played with Raphael and D3 years ago. I also saw a ZUI framework once on
+GitHub which could have been used as a starting point, but I don't remember
+which one it was right now. I also need to research into tools for handling
+mousewheel events.
+
 ## About Me
 I like to start things. But I don't often finish. I have created hundreds of
 Minecraft worlds. I like starting fresh. So, if this is as far as this project
 goes, at least you will know why.
+
+##Links
+### To Read / Reference
+https://en.wikipedia.org/wiki/Zooming_user_interface
+https://bonsaijs.org/
+http://raphaeljs.com/
+http://www.jsgl.org/doku.php
+http://paperjs.org/
+http://d3js.org/
