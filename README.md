@@ -23,11 +23,8 @@ A viewer must be available to allow the sharing of documents with others.
 An authoring tool to create a sharable document to be viewed by the viewer.
 
 ## Technology
-Some kind of vector graphics (SVG?) manipulated using JavaScript.
-I've played with Raphael and D3 years ago. I also saw a ZUI framework once on
-GitHub which could have been used as a starting point, but I don't remember
-which one it was right now. I also need to research into tools for handling
-mousewheel events.
+It should be language agnostic and allow for the plugging in of different
+technologies.
 
 ## About Me
 I like to start things. But I don't often finish. I have created hundreds of
