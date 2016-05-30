@@ -12,32 +12,14 @@
     <script src="jquery.mousewheel.min.js"></script>
   </head>
   <body>
-      <div id="help">
-      <div class="zoom">bye</div>
-      <br>
-      j
-      <br>
-      j
-      <br>
-      jfsddsffdsdfsadfsfdsdfsfs
-      <br>
-      j
-      <br>
-      jdfsadfsfdfdsdfsfsdfds
-      <br>
-      j
-      <br>
-      j
-      <br>
-          </div>
+      <p>Use the mouse wheel</p>
+      
+      <div id="deltaYOutput"></div>
       <script>
       jQuery(function ($) {
-          console.log('init');
-          $(document).scroll(function() {
-              $(".zoom").text("hi");
-          });
-          $("#help").on('mousewheel', function(event) {
-                $(".zoom").text(event.deltaY);//, event.deltaY, event.deltaFactor);
+          var output = $("#deltaYOutput");
+          $(document).on('mousewheel', function(event) {
+                output.append(event.deltaY + ",");//, event.deltaY, event.deltaFactor);
             });
       });
       </script>
