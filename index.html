@@ -19,7 +19,7 @@
       jQuery(function ($) {
           var output = $("#deltaYOutput");
           $(document).on('mousewheel', function(event) {
-                output.append(event.deltaY + ",");//, event.deltaY, event.deltaFactor);
+                output.append(event.deltaY + ":" + event.deltaFactor + ",");//, event.deltaY, event.deltaFactor);
             });
       });
       </script>
