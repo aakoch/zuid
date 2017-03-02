@@ -1,0 +1,22 @@
+{
+  "name": "zuid",
+  "version": "0.0.1",
+  "description": "Zoomable User Interface for Diagrams",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aakoch/zuid.git"
+  },
+  "author": "Adam A. Koch (aakoch)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aakoch/zuid/issues"
+  },
+  "homepage": "https://github.com/aakoch/zuid#readme",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}
