@@ -24,6 +24,7 @@
     <g fill="none">
       <g stroke="#000" fill="#FFF">
         <rect x="10" y="10" width="120" height="120" fill="url(#linear-gradient)"/>
+        <rect x="10" y="10" width="12" height="12"/>
         <path d="M 10 10  L 130 130 Z"/>
       </g>
     </g>
@@ -39,6 +40,7 @@ $(function() {
     fit: true,
     center: true,
     minZoom: 0.1, 
+    maxZoom: 2000, 
     onZoom: function(zoom){
       console.dir(zoom);
     }
