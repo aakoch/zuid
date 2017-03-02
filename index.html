@@ -24,22 +24,22 @@
       <g fill="none">
         <g stroke="#000" fill="#FFF">
           <rect x="10" y="10" width="120" height="120" class="sys"/>
-          <rect x="20" y="50" width="35" height="30" class="comp1"/>
-          <rect x="70" y="50" width="35" height="30" class="comp1"/>
+          <rect x="20" y="50" width="35" height="30" class="comp1" style="stroke-width: .8px"/>
+          <rect x="70" y="50" width="35" height="30" class="comp1" style="stroke-width: .8px"/>
           <rect x="22" y="65" width="3.5" height="3.0" class="inner1" style="stroke-width: .5px"/>
         </g>
       </g>
       <text x="12" y="22" style="font-size: 1.1em" class="sys">System</text>
       <text x="22" y="55" style="font-size: .4em" class="comp1">Component 1</text>
-      <text x="22" y="65" style="font-size: .05em" class="inner1">Inner 1</text>
+      <text x="23" y="66" style="font-size: .05em" class="inner1">Inner 1</text>
       <text x="72" y="55" style="font-size: .4em" class="comp1">Component 2</text>
     </svg>
     <button id="move">Move</button>
   </div>
 <script>
-var comp1lay = 1.9;
-var syslay = .83;
-var innerlay = 4.0;
+var comp1lay = 1.1;
+var syslay = 0;
+var innerlay = 2.0;
 $(function() {
   panZoomInstance = svgPanZoom('#svg-id', {
     zoomEnabled: true,
@@ -49,7 +49,9 @@ $(function() {
     minZoom: 0.1, 
     maxZoom: 2000, 
     onZoom: function(zoom){
-      console.dir(zoom);
+      console.log("zoom=", zoom);
+      console.log("log =", Math.log(zoom));
+      zoom = Math.log(zoom);
       $(".comp1").css({opacity: (1 - Math.abs(comp1lay - zoom) / 2) - .1});
       $(".sys").css({opacity: (1 - Math.abs(syslay - zoom) / 2) - .1});
       $(".inner1").css({opacity: (1 - Math.abs(innerlay - zoom) / 2) - .1});
@@ -58,7 +60,7 @@ $(function() {
   });
   
   // zoom out
-  panZoomInstance.zoom(0.5);
+  panZoomInstance.zoom(0.9);
 
   $("#move").on("click", function() {
     // Pan by any values from -80 to 80
