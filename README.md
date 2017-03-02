@@ -23,6 +23,9 @@ jitsu install http-server
 ## Run
 http-server
 
+## Demo
+https://aakoch.github.io/zuid/
+
 ## Viewer
 A viewer must be available to allow the sharing of documents with others.
 
