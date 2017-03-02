@@ -16,6 +16,13 @@ take it a step further where you couldn't see tiny text until you zoomed in.
 Instead, the text would have an opacity of 0 and smoothly increase when
 zoomed in.
 
+## Install http-server
+npm install jitsu -g
+jitsu install http-server
+
+## Run
+http-server
+
 ## Viewer
 A viewer must be available to allow the sharing of documents with others.
 
