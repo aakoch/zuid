@@ -14,47 +14,57 @@
   </head>
   <body>
     <div id="container" style="width: 300px; height: 300px; border:1px solid black; ">
-  <svg id="svg-id" xmlns="http://www.w3.org/2000/svg" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit;" version="1.1">
-    <defs>
-      <linearGradient id="linear-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" style="stop-color:rgb(56,121,217);stop-opacity:1" />
-        <stop offset="100%" style="stop-color:rgb(138,192,7);stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <g fill="none">
-      <g stroke="#000" fill="#FFF">
-        <rect x="10" y="10" width="120" height="120" fill="url(#linear-gradient)"/>
-        <rect x="10" y="10" width="12" height="12"/>
-        <path d="M 10 10  L 130 130 Z"/>
+      <svg id="svg-id" xmlns="http://www.w3.org/2000/svg" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit;" version="1.1">
+      <defs>
+        <linearGradient id="linear-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:rgb(56,121,217);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgb(138,192,7);stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <g fill="none">
+        <g stroke="#000" fill="#FFF">
+          <rect x="10" y="10" width="120" height="120" class="sys"/>
+          <rect x="20" y="50" width="35" height="30" class="comp1"/>
+          <rect x="70" y="50" width="35" height="30" class="comp1"/>
+          <rect x="22" y="65" width="3.5" height="3.0" class="inner1" style="stroke-width: .5px"/>
+        </g>
       </g>
-    </g>
-    <text x="0" y="15" fill="red">I love SVG!</text>
-  </svg>
-  <button id="move">Move</button>
-</div>
-      <script>
+      <text x="12" y="22" style="font-size: 1.1em" class="sys">System</text>
+      <text x="22" y="55" style="font-size: .4em" class="comp1">Component 1</text>
+      <text x="22" y="65" style="font-size: .05em" class="inner1">Inner 1</text>
+      <text x="72" y="55" style="font-size: .4em" class="comp1">Component 2</text>
+    </svg>
+    <button id="move">Move</button>
+  </div>
+<script>
+var comp1lay = 1.9;
+var syslay = .83;
+var innerlay = 4.0;
 $(function() {
   panZoomInstance = svgPanZoom('#svg-id', {
     zoomEnabled: true,
     controlIconsEnabled: true,
-    fit: true,
+    contain: true,
     center: true,
     minZoom: 0.1, 
     maxZoom: 2000, 
     onZoom: function(zoom){
       console.dir(zoom);
+      $(".comp1").css({opacity: (1 - Math.abs(comp1lay - zoom) / 2) - .1});
+      $(".sys").css({opacity: (1 - Math.abs(syslay - zoom) / 2) - .1});
+      $(".inner1").css({opacity: (1 - Math.abs(innerlay - zoom) / 2) - .1});
     }
     , zoomScaleSensitivity: 0.3
   });
   
   // zoom out
-  panZoomInstance.zoom(0.2);
+  panZoomInstance.zoom(0.5);
 
   $("#move").on("click", function() {
     // Pan by any values from -80 to 80
     panZoomInstance.panBy({x: Math.round(Math.random() * 160 - 80), y: Math.round(Math.random() * 160 - 80)})
   });
 })
-      </script>
+</script>
   </body>
 </html>
