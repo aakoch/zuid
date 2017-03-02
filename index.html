@@ -8,7 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <script   src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="jquery.mousewheel.min.js"></script>
     <script src="svg-pan-zoom.min.js"></script>
   </head>
@@ -38,10 +38,11 @@ $(function() {
     controlIconsEnabled: true,
     fit: true,
     center: true,
-    minZoom: 0.2, 
+    minZoom: 0.1, 
     onZoom: function(zoom){
       console.dir(zoom);
     }
+    , zoomScaleSensitivity: 0.3
   });
   
   // zoom out
