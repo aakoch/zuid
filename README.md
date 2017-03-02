@@ -16,9 +16,9 @@ take it a step further where you couldn't see tiny text until you zoomed in.
 Instead, the text would have an opacity of 0 and smoothly increase when
 zoomed in.
 
-## Install http-server
-npm install jitsu -g
-jitsu install http-server
+## Install http-server 
+npm install jitsu -g    
+jitsu install http-server    
 
 ## Run
 http-server
@@ -41,7 +41,7 @@ I like to start things. But I don't often finish. I have created hundreds of
 Minecraft worlds. I like starting fresh. So, if this is as far as this project
 goes, at least you will know why.
 
-##Links
+## Links
 ### To Read / Reference
 https://en.wikipedia.org/wiki/Zooming_user_interface  
 https://bonsaijs.org/  
