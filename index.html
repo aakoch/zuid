@@ -11,36 +11,69 @@
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="jquery.mousewheel.min.js"></script>
     <script src="svg-pan-zoom.min.js"></script>
+    <script src="raphael.min.js"></script>
   </head>
   <body>
     <div id="container" style="width: 300px; height: 300px; border:1px solid black; ">
-      <svg id="svg-id" xmlns="http://www.w3.org/2000/svg" style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit;" version="1.1">
-      <defs>
-        <linearGradient id="linear-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:rgb(56,121,217);stop-opacity:1" />
-          <stop offset="100%" style="stop-color:rgb(138,192,7);stop-opacity:1" />
-        </linearGradient>
-      </defs>
-      <g fill="none">
-        <g stroke="#000" fill="#FFF">
-          <rect x="10" y="10" width="120" height="120" class="sys" rx="2" ry="2"/>
-          <rect x="20" y="50" width="35" height="30" class="comp1" style="stroke-width: .8px" rx="2" ry="2"/>
-          <rect x="70" y="50" width="35" height="30" class="comp1" style="stroke-width: .8px" rx="2" ry="2"/>
-          <rect x="22" y="65" width="3.5" height="3.0" class="inner1" style="stroke-width: .5px" rx=".2" ry=".2"/>
-        </g>
-      </g>
-      <text x="12" y="22" style="font-size: 1.1em" class="sys">System</text>
-      <text x="22" y="55" style="font-size: .4em" class="comp1">Component 1</text>
-      <text x="23" y="66" style="font-size: .05em" class="inner1">Inner 1</text>
-      <text x="72" y="55" style="font-size: .4em" class="comp1">Component 2</text>
-    </svg>
-  </div>
+    </div>
 <script>
+var paper = Raphael('container');
+
+var count = 1;
+function createBoundary(paper, title, scale, x, y) {
+
+  var sysrectangle = paper.rect(x, y, 120, 120, 2);
+  sysrectangle.attr('stroke-width', scale);
+
+  var t = paper.text(x + 1, y + 8, title);
+  t.attr('font-size', 14);
+  t.attr('text-anchor', 'start');
+
+  var st = paper.set();
+  st.push(
+      t,
+      sysrectangle
+  );
+  st.scale(scale, scale, 0, 0);
+//  st.attr('class', 'sys');
+  count++;
+
+  st.setOpacity = function(zoom) {
+    var opacity = (1 - Math.abs(1 - scale - zoom) / 2) - .2;
+    console.log(opacity);
+    // if (opacity < 0) {
+    //   st.hide();
+    // }
+    // else {
+    //   st.show();
+    // }
+    st.attr('opacity', opacity);
+  }
+  return st;
+}
+
+var boundaries = [];
+boundaries.push(createBoundary(paper, "System", 1, 0, 0));
+var comp1 = createBoundary(paper, "Comp 1", .4, 0, 0);
+comp1.translate(10, 50);
+boundaries.push(comp1);
+var comp2 = createBoundary(paper, "Comp 2", .4, 0, 0);
+comp2.translate(150, 50);
+boundaries.push(comp2);
+var subcomp = createBoundary(paper, "Sub-Comp 1", .12, 0, 0);
+subcomp.translate(50, 250);
+boundaries.push(subcomp);
+//boundaries.push(createBoundary(paper, "Comp 2", .5, 36, 18));
+//boundaries.push(createBoundary(paper, "Sub-Comp 1", .25, 10, 18));
+
 var comp1lay = 1.1;
 var syslay = 0;
 var innerlay = 2.0;
 $(function() {
-  panZoomInstance = svgPanZoom('#svg-id', {
+  var sysrect;
+
+
+  panZoomInstance = svgPanZoom(paper.canvas, {
     zoomEnabled: true,
     controlIconsEnabled: true,
     contain: true,
@@ -50,10 +83,22 @@ $(function() {
     onZoom: function(zoom){
       console.log("zoom=", zoom);
       console.log("log =", Math.log(zoom));
+      // if (zoom > 20) {
+      //   $("#sysrect").hide();
+      //   console.log("removed");
+      // }
+      // else {
+      //   $("#sysrect").show();
+      //   console.log("added");
+      // }
       zoom = Math.log(zoom);
-      $(".comp1").css({opacity: (1 - Math.abs(comp1lay - zoom) / 2) - .1});
-      $(".sys").css({opacity: (1 - Math.abs(syslay - zoom) / 2) - .1});
-      $(".inner1").css({opacity: (1 - Math.abs(innerlay - zoom) / 2) - .1});
+      //$(".comp1").css({opacity: (1 - Math.abs(comp1lay - zoom) / 2) - .1});
+      //$(".sys").css({opacity: (1 - Math.abs(syslay - zoom) / 2) - .1});
+      //$(".inner1").css({opacity: (1 - Math.abs(innerlay - zoom) / 2) - .1});
+
+      boundaries.forEach(function(element) {
+        element.setOpacity(zoom);
+      }, this);
     }
     , zoomScaleSensitivity: 0.3
   });
